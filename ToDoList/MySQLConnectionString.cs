@@ -13,7 +13,7 @@ namespace ToDoList
         string _pass;
         string _port;
         string _dataBase;
-
+        //Стандартный конструктор
         public MySQLConnectionString ( string Server, string User, string Password,
             string DBName,string Port)
         {
@@ -23,7 +23,7 @@ namespace ToDoList
             _port = Port;
             _dataBase = DBName;
         }
-
+        //Перегрузка с конструктором по умолчанию
         public MySQLConnectionString(string Server, string User, string Password,
           string DBName)
         {
@@ -33,8 +33,8 @@ namespace ToDoList
             _port = "3306";
             _dataBase = DBName;
         }
-
-        public string ConnectionString()
+        //Создание ConnectionString для MySQL
+        public string CreateConnectionString()
         {
             string connStr =
                     "Server=" + _server + ";" +

@@ -14,7 +14,7 @@ namespace ToDoList
         public string Date { get;  set; }
         static public  string TableName = "logins";
         public List<string> ColumnNames { get; private set; }
-
+        //Создает массив с наименованием всеъ столбцов в базе данных
         private void SetColumnNames()
         {
             ColumnNames = new List<string>();
@@ -23,6 +23,7 @@ namespace ToDoList
             ColumnNames.Add("pass");
             ColumnNames.Add("regDate");
         }
+        //Стандартный конструктор
         public User  ( string UserName, string Password, string RegDate)
         {
             this.UserName = UserName;
@@ -30,19 +31,20 @@ namespace ToDoList
             Date= RegDate ;
             SetColumnNames();
         }
-
+        //Конструктор принимающий List<string>
         public User(List<string> UserData) 
         {
+            //Заполняет поля из UserData
             getDataFromList(UserData);
             SetColumnNames(); 
         }
+        //Принимает лист с даннами о юзере и заполняет им поля
         public void getDataFromList(List<string> UserData)
         {
+            Id = UserData[0];
             UserName = UserData[1];
             Pass = UserData[2];
             Date = UserData[3];
-            Id = UserData[0];
-          
         }
     }
 }

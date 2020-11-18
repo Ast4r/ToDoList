@@ -8,6 +8,7 @@ namespace ToDoList
 {
     interface IConnectionString
     {
-        string ConnectionString();
+        //Содержит реализацию инициализации CreateConnectionString
+        string CreateConnectionString();
     }
 }

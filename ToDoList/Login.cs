@@ -13,6 +13,7 @@ namespace ToDoList
 {
     public partial class Login : Form
     {
+        //Стандартный конструктор
         public Login()
         {
             InitializeComponent();
@@ -20,32 +21,22 @@ namespace ToDoList
         MySQLConnectionString connStr; 
         MySQLDBConnection mySQLDB;
         SELECT select;
+        //Ищет пользователя в таблице и возвращает его,отображает его Id
         private void AcceptButton_Click(object sender, EventArgs e)
         {
+            //Запрос пользователя с введенным ником и паролем
             select.Select(User.TableName, "user = '" + TBName.Text + "' and pass ='" + TBPass.Text + "'");
+            
             User loginUser = new User( select.TableToList(0));
             MessageBox.Show(loginUser.Id);
         }
-
+        //Инициализация всех полей
         private void Login_Load(object sender, EventArgs e)
         {
+            //Инициализация ConnectionString
             connStr = new MySQLConnectionString("localhost", "root", "root", "testDb");
             mySQLDB = new MySQLDBConnection(connStr);
             select = new SELECT(mySQLDB);
         }
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    MySQLConnectionString connStr = 
-        //        new MySQLConnectionString("localhost", "root", "root", "testDb");
-
-        //    MySQLDBConnection mySQLDB = new MySQLDBConnection(connStr);
-
-        //    SELECT select = new SELECT(mySQLDB);
-        //    User test = new User();
-        //    test.getDataFromList(select.select("logins","id=2"));
-        //    MessageBox.Show(test.Id + " " + test.UserName + " " + test.Date);
-
-        //}
     }
 }
